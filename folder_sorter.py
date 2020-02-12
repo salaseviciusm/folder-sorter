@@ -5,6 +5,7 @@ from watchdog.events import FileSystemEventHandler
 import os
 import time
 import re
+import sys
 
 class EventHandler(FileSystemEventHandler):
 
@@ -92,8 +93,8 @@ class EventHandler(FileSystemEventHandler):
 
 
 if __name__ == "__main__":
-
-    event_handler = EventHandler("C:/Users/salas/Downloads", "C:/Users/salas/Desktop/Imperial")
+    assert len(sys.argv) == 3
+    event_handler = EventHandler(sys.argv[1], sys.argv[2])
     event_handler.get_dest_dir_heirarchy()
 
     for tag in event_handler.dest_tags.items():
